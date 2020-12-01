@@ -25,10 +25,11 @@ def get_live_addr(name):
     cursor = c.execute(
         "SELECT address FROM users WHERE name = '{}'".format(name))
 
-    if cursor.rowcount == 0:
+    row = cursor.fetchone()
+    if row == None:
         return None
     else:
-        return cursor.fetchone()[0]
+        return row[0]
 
 
 @app.route('/<name>')
